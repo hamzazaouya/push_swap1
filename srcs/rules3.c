@@ -6,23 +6,18 @@
 /*   By: hazaouya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 08:54:50 by hazaouya          #+#    #+#             */
-/*   Updated: 2022/05/08 09:00:18 by hazaouya         ###   ########.fr       */
+/*   Updated: 2022/05/10 16:51:36 by hazaouya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	ft_node_len(t_psnode *node)
+void	ft_rrr(t_psnode **stack_a, t_psnode **stack_b, int c)
 {
-	int	counter;
-
-	counter = 0;
-	while (node)
-	{
-		node = node->next;
-		counter++;
-	}
-	return (counter);
+	ft_reverse_rotate(stack_a);
+	ft_reverse_rotate(stack_b);
+	if(c)
+		write(1, "rrr\n", 4);
 }
 
 void	ft_add_front(t_psnode **list, t_psnode **node)

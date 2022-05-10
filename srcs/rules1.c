@@ -6,13 +6,13 @@
 /*   By: hazaouya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 08:29:47 by hazaouya          #+#    #+#             */
-/*   Updated: 2022/05/08 08:54:18 by hazaouya         ###   ########.fr       */
+/*   Updated: 2022/05/10 16:50:20 by hazaouya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	ft_swap_a(t_psnode **stack_a)
+void	ft_swap_a(t_psnode **stack_a, int c)
 {
 	t_psnode	*temp;
 	int			node_len;
@@ -25,10 +25,11 @@ void	ft_swap_a(t_psnode **stack_a)
 		temp->next = *stack_a;
 		*stack_a = temp;
 	}
-	write(1, "sa\n", 3);
+	if (c)
+		write(1, "sa\n", 3);
 }
 
-void	ft_swap_b(t_psnode **stack_b)
+void	ft_swap_b(t_psnode **stack_b, int c)
 {
 	t_psnode	*temp;
 	int			node_len;
@@ -41,17 +42,18 @@ void	ft_swap_b(t_psnode **stack_b)
 		temp->next = *stack_b;
 		*stack_b = temp;
 	}
-	write(1, "sb\n", 3);
+	if (c)
+		write(1, "sb\n", 3);
 }
 
-void	ft_swap_ss(t_pushswap_data *psdata)
+void	ft_ss(t_pushswap_data *psdata, int c)
 {
-	ft_swap_a(&psdata->stack_a);
-	ft_swap_b(&psdata->stack_b);
+	ft_swap_a(&psdata->stack_a, c);
+	ft_swap_b(&psdata->stack_b, c);
 	write(1, "ss\n", 3);
 }
 
-void	ft_push_b(t_psnode **stack_a, t_psnode **stack_b)
+void	ft_push_b(t_psnode **stack_a, t_psnode **stack_b, int c)
 {
 	t_psnode	*temp;
 	int			node_len;
@@ -63,10 +65,11 @@ void	ft_push_b(t_psnode **stack_a, t_psnode **stack_b)
 		*stack_a = (*stack_a)->next;
 		ft_add_front(stack_b, &temp);
 	}
-	write(1, "pb\n", 3);
+	if (c)
+		write(1, "pb\n", 3);
 }
 
-void	ft_push_a(t_psnode **stack_a, t_psnode **stack_b)
+void	ft_push_a(t_psnode **stack_a, t_psnode **stack_b, int c)
 {
 	t_psnode	*temp;
 	int			node_len;
@@ -78,5 +81,6 @@ void	ft_push_a(t_psnode **stack_a, t_psnode **stack_b)
 		*stack_b = (*stack_b)->next;
 		ft_add_front(stack_a, &temp);
 	}
-	write(1, "pa\n", 3);
+	if (c)
+		write(1, "pa\n", 3);
 }

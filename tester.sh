@@ -7,10 +7,10 @@ FILE=problem_100
 SUM=0
 ARGMUNT=0
 
-for i in {1..100}
+for i in {1..200}
 do
 		export ARG=`ruby -e "puts (1..3).to_a.shuffle.join(' ')"`
-		if ./push_swap $ARG | ./checker_MAC $ARG | grep -q KO
+		if ./push_swap $ARG | ./checker $ARG | grep -q KO
 		then
 			echo $ARG
 			echo "Error!"
@@ -26,7 +26,7 @@ do
 		if [ "$NUMBER" -gt "$MAX" ]
 			then
 			MAX=$NUMBER;
-			ARGMUNT=$ARG
+			#ARGMUNT=$ARG
 		fi
 		echo $i ":" $NUMBER
 		let SUM+=$NUMBER;
@@ -35,4 +35,4 @@ done
 
 echo "AVG: $(($SUM / $ITERATIONS))"
 echo "MAX: " $MAX
-echo $ARGMUNT
+#echo $ARGMUNT

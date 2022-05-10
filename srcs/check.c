@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hazaouya <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/10 16:43:39 by hazaouya          #+#    #+#             */
+/*   Updated: 2022/05/10 16:45:23 by hazaouya         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/push_swap.h"
 
-void ft_error()
+void	ft_error(void)
 {
 	write(1, "Error\n", 6);
 	exit(0);
@@ -8,8 +20,8 @@ void ft_error()
 
 int	*ft_get_numbers(int argc, char **argv)
 {
-	int i;
-	int *numbers;
+	int	i;
+	int	*numbers;
 
 	numbers = (int *)malloc(sizeof(int) * (argc - 1));
 	if (numbers == NULL)
@@ -26,7 +38,7 @@ int	*ft_get_numbers(int argc, char **argv)
 void	ft_check_numbers(int *numbers, int len)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = 0;
 	while (i < len)
@@ -44,13 +56,13 @@ void	ft_check_numbers(int *numbers, int len)
 
 int	*ft_check_input(int argc, char **argv)
 {
-	int *numbers;
-	int i;
+	int	*numbers;
+	int	i;
 
 	i = 0;
 	if (argc == 1)
 		exit(0);
 	numbers = ft_get_numbers(argc, argv);
 	ft_check_numbers(numbers, argc - 1);
-	return numbers;
+	return (numbers);
 }

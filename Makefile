@@ -3,9 +3,9 @@ BONUS = checker
 HEADER = push_swap.h
 
 SOURCES = push_swap.c stacks.c \
-		rules1.c rules2.c rules3.c push_bta.c push_atb.c ft_aid_fun.c \
-		check.c prepare_stack_a.c rules4.c
-SOURCES_B = checker.c ../srcs/stacks.c ../srcs/check.c
+		rules1.c rules2.c rules3.c push_bta.c push_atb.c \
+		check.c prepare_stack_a.c ft_atoi.c
+SOURCES_B = rules.c checker.c ../srcs/stacks.c ../srcs/check.c ../srcs/rules1.c ../srcs/rules2.c ../srcs/rules3.c ../srcs/ft_atoi.c
 
 BONUS_PATH = bonus
 SRC_PATH = srcs
@@ -15,11 +15,12 @@ LIB_PATH = libft
 LIB = $(LIB_PATH)/libft.a
 
 CC = cc
+CFLAGS = -Wall -Wextra -Werror 
 
 SRCS = $(addprefix $(SRC_PATH)/,$(SOURCES))
 OBJS = $(addprefix $(OBJ_PATH)/,$(SOURCES:.c=.o))
 
-OBJS_B = $(addprefix $(OBJ_PATH)/,$(SOURCES_B:.c=.o))
+OBJS_B = $(addprefix $(OBJ_PATH_B)/,$(SOURCES_B:.c=.o))
 
 
 all : $(OBJ_PATH) $(NAME)
@@ -29,21 +30,21 @@ $(LIB):
 
 
 $(NAME) : $(OBJS) $(LIB)
-	$(CC) $(OBJS) $(LIB) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIB) -o $(NAME)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c includes/$(HEADER)
-	@$(CC) -c -o $@ $<
+	@$(CC) $(CFLAGS) -c -o $@ $<
 
 $(OBJ_PATH):
 	@mkdir objs
 
-bonus: $(BONUS)
+bonus:  $(OBJ_PATH_B) $(BONUS)
 
-$(BONUS): $(OBJS_B) $(LIB) $(OBJ_PATH_B)
-	$(CC) $(OBJS_B) $(LIB) -o $(BONUS)
+$(BONUS): $(OBJS_B) $(LIB)
+	$(CC) $(CFLAGS) $(OBJS_B) $(LIB) -o $(BONUS)
 
 $(OBJ_PATH_B)/%.o: $(BONUS_PATH)/%.c includes/$(HEADER)
-	@$(CC) -c -o $@ $<
+	@$(CC) $(CFLAGS) -c -o $@ $<
 
 $(OBJ_PATH_B):
 	@mkdir objs_b

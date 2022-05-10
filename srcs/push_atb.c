@@ -6,7 +6,7 @@
 /*   By: hazaouya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 10:21:00 by hazaouya          #+#    #+#             */
-/*   Updated: 2022/05/08 10:43:55 by hazaouya         ###   ########.fr       */
+/*   Updated: 2022/05/10 16:48:53 by hazaouya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,20 @@ void	ft_get_facture(t_pushswap_data *psdata)
 void	ft_push_atb_aid(t_pushswap_data *psdata, int *swap_len, \
 		int *swap_max, int *facture)
 {
-	t_psnode *temp;
+	t_psnode	*temp;
 
 	while (*swap_len < *swap_max)
 	{
 		if (psdata->stack_a->index < *swap_max)
 		{
-			ft_push_b(&psdata->stack_a, &psdata->stack_b);
+			ft_push_b(&psdata->stack_a, &psdata->stack_b, 1);
 			if (psdata->stack_b->index < (*swap_max - *facture / 2) \
 					&& psdata->len_b > 5)
-				ft_rotate_b(&psdata->stack_b);
+				ft_rotate_b(&psdata->stack_b, 1);
 			if (psdata->stack_b->next \
 					&& psdata->stack_b->next->index > \
 					psdata->stack_b->index && psdata->len_b > 5)
-				ft_swap_b(&psdata->stack_b);
+				ft_swap_b(&psdata->stack_b, 1);
 			(*swap_len)++;
 			psdata->len_a--;
 			psdata->len_b++;
@@ -50,21 +50,21 @@ void	ft_push_atb_aid(t_pushswap_data *psdata, int *swap_len, \
 		else
 		{
 			temp = psdata->stack_a;
-			while(temp->next)
+			while (temp->next)
 				temp = temp->next;
-			if(temp->index < *swap_max)
-				ft_rra(&psdata->stack_a);
+			if (temp->index < *swap_max)
+				ft_rra(&psdata->stack_a, 1);
 			else
-				ft_rotate_a(&psdata->stack_a);
+				ft_rotate_a(&psdata->stack_a, 1);
 		}
 	}
 }
 
 int	ft_is_sorted(t_psnode *stack_a)
 {
-	while(stack_a)
+	while (stack_a)
 	{
-		if(stack_a->next && (stack_a->index > stack_a->next->index))
+		if (stack_a->next && (stack_a->index > stack_a->next->index))
 			return (1);
 		stack_a = stack_a->next;
 	}
@@ -85,11 +85,11 @@ void	ft_push_atb(t_pushswap_data *psdata)
 		facture = swap_max - swap_len;
 		ft_push_atb_aid(psdata, &swap_len, &swap_max, &facture);
 	}
-	while(ft_is_sorted(psdata->stack_a))
+	while (ft_is_sorted(psdata->stack_a))
 	{
-		if((psdata->stack_a->index > psdata->stack_a->next->index))
-			ft_swap_a(&psdata->stack_a);
-		if(ft_is_sorted(psdata->stack_a))
-			ft_rra(&psdata->stack_a);
+		if ((psdata->stack_a->index > psdata->stack_a->next->index))
+			ft_swap_a(&psdata->stack_a, 1);
+		if (ft_is_sorted(psdata->stack_a))
+			ft_rra(&psdata->stack_a, 1);
 	}
 }

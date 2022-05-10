@@ -6,7 +6,7 @@
 /*   By: hazaouya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 10:19:24 by hazaouya          #+#    #+#             */
-/*   Updated: 2022/05/08 10:19:50 by hazaouya         ###   ########.fr       */
+/*   Updated: 2022/05/10 16:49:35 by hazaouya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	ft_getpos_max(t_pushswap_data *psdata, t_psnode *temp, int i, int j)
 			psdata->maxs[j].pos = 0;
 	else if (temp->index == psdata->maxs[j].num)
 	{
-		//printf("i = %d\n", i);
 		if (i > psdata->len_b / 2)
 		{
 			psdata->maxs[j].pos = psdata->len_b - (i - 1);
@@ -85,19 +84,19 @@ void	ft_push_bta_pusher(t_pushswap_data *psdata, t_maxs *pusher)
 	{
 		if (psdata->stack_b->next \
 				&& psdata->stack_b->next->index == pusher->num)
-			ft_swap_b(&psdata->stack_b);
+			ft_swap_b(&psdata->stack_b, 1);
 		if (psdata->stack_b->index == pusher->num)
 		{
-			ft_push_a(&psdata->stack_a, &psdata->stack_b);
+			ft_push_a(&psdata->stack_a, &psdata->stack_b, 1);
 			if (psdata->len_a \
 					&& psdata->stack_a->index > psdata->stack_a->next->index)
-				ft_swap_a(&psdata->stack_a);
+				ft_swap_a(&psdata->stack_a, 1);
 			break ;
 		}
 		else if (pusher->side == 1)
-			ft_rotate_b(&psdata->stack_b);
+			ft_rotate_b(&psdata->stack_b, 1);
 		else
-			ft_rrb(&psdata->stack_b);
+			ft_rrb(&psdata->stack_b, 1);
 	}
 }
 

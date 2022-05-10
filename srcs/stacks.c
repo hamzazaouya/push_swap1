@@ -6,7 +6,7 @@
 /*   By: hazaouya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 09:00:26 by hazaouya          #+#    #+#             */
-/*   Updated: 2022/05/08 09:05:42 by hazaouya         ###   ########.fr       */
+/*   Updated: 2022/05/10 16:52:24 by hazaouya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,3 +49,15 @@ t_psnode	*ft_fill_stack_a(int len, int *numbres)
 	return (head);
 }
 
+int	ft_node_len(t_psnode *node)
+{
+	int	counter;
+
+	counter = 0;
+	while (node)
+	{
+		node = node->next;
+		counter++;
+	}
+	return (counter);
+}
