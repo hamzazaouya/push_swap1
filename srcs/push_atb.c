@@ -26,11 +26,22 @@ void	ft_get_facture(t_pushswap_data *psdata)
 			psdata->facture = 6;
 }
 
-void	ft_push_atb_aid(t_pushswap_data *psdata, int *swap_len, \
-		int *swap_max, int *facture)
+void	ft_push_stb_move(t_pushswap_data *psdata, int swap_max)
 {
 	t_psnode	*temp;
 
+	temp = psdata->stack_a;
+	while (temp->next)
+		temp = temp->next;
+	if (temp->index < swap_max)
+		ft_rra(&psdata->stack_a, 1);
+	else
+		ft_rotate_a(&psdata->stack_a, 1);
+}
+
+void	ft_push_atb_aid(t_pushswap_data *psdata, int *swap_len, \
+		int *swap_max, int *facture)
+{
 	while (*swap_len < *swap_max)
 	{
 		if (psdata->stack_a->index < *swap_max)
@@ -48,15 +59,7 @@ void	ft_push_atb_aid(t_pushswap_data *psdata, int *swap_len, \
 			psdata->len_b++;
 		}
 		else
-		{
-			temp = psdata->stack_a;
-			while (temp->next)
-				temp = temp->next;
-			if (temp->index < *swap_max)
-				ft_rra(&psdata->stack_a, 1);
-			else
-				ft_rotate_a(&psdata->stack_a, 1);
-		}
+			ft_push_stb_move(psdata, *swap_max);
 	}
 }
 

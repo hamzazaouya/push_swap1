@@ -12,7 +12,6 @@
 
 #include "../includes/push_swap.h"
 
-
 void	ft_init(int argc, int *numbers, t_pushswap_data *psdata)
 {
 	psdata->argc = argc;

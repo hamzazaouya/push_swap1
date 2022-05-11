@@ -38,8 +38,8 @@ void	ft_get_move(t_stacks *stacks)
 		control = read(0, buff, 1);
 		move = ft_strjoin(move, buff);
 		if (control)
-			ft_check_buff(stacks,move, buff, &i);
-		if(*buff == '\n')
+			ft_check_buff(stacks, move, buff, &i);
+		if (*buff == '\n')
 		{
 			free(move);
 			move = (char *)ft_calloc(1, sizeof(char));
