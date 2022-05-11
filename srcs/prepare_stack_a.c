@@ -45,16 +45,13 @@ int	ft_serch_arr(int *arr, int num)
 	}
 }
 
-void	ft_prepare_stack_a(t_pushswap_data *psdata, int *numbers)
+void	ft_prepare_stack_a(t_psnode *stack_a, int *numbers)
 {
-	t_psnode	*temp;
-
-	temp = psdata->stack_a;
-	ft_sort_arr(numbers, psdata->len_a);
-	while (temp)
+	ft_sort_arr(numbers, ft_node_len(stack_a));
+	while (stack_a)
 	{
-		temp->index = ft_serch_arr(numbers, temp->num);
-		temp = temp->next;
+		stack_a->index = ft_serch_arr(numbers, stack_a->num);
+		stack_a = stack_a->next;
 	}
 	free(numbers);
 }

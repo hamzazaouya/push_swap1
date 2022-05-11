@@ -17,11 +17,11 @@ void	ft_init(int argc, int *numbers, t_pushswap_data *psdata)
 	psdata->argc = argc;
 	psdata->stack_a = ft_fill_stack_a(argc - 1, numbers);
 	psdata->stack_b = NULL;
-	psdata->stack_a->index = -1;
 	psdata->len_a = argc - 1;
 	psdata->len_b = 0;
 	psdata->maxs_len = 2;
 	psdata->maxs = (t_maxs *)malloc(sizeof(t_maxs) * psdata->maxs_len);
+	ft_prepare_stack_a(psdata->stack_a, numbers);
 }
 
 int	main(int argc, char **argv)
@@ -31,7 +31,6 @@ int	main(int argc, char **argv)
 
 	numbers = ft_check_input(argc, argv);
 	ft_init(argc, numbers, &psdata);
-	ft_prepare_stack_a(&psdata, numbers);
 	ft_push_atb(&psdata);
 	ft_push_bta(&psdata);
 }
