@@ -55,15 +55,20 @@ void	ft_reverse_rotate(t_psnode **list)
 {
 	t_psnode	*temp1;
 	t_psnode	*temp;
+	int			list_len;
 
-	temp = *list;
-	temp1 = (*list)->next;
-	while (temp1->next)
+	list_len = ft_node_len(*(list));
+	if (list_len > 1)
 	{
-		temp = temp->next;
-		temp1 = temp1->next;
+		temp = *list;
+		temp1 = (*list)->next;
+		while (temp1->next)
+		{
+			temp = temp->next;
+			temp1 = temp1->next;
+		}
+		temp1->next = *list;
+		*list = temp1;
+		temp->next = NULL;
 	}
-	temp1->next = *list;
-	*list = temp1;
-	temp->next = NULL;
 }

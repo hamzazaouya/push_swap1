@@ -2,14 +2,14 @@
 
 MAX=0
 ITERATIONS=0
-LIMIT=3
+LIMIT=700
 FILE=problem_100
 SUM=0
 ARGMUNT=0
 
-for i in {1..200}
+for i in {1..1000}
 do
-		export ARG=`ruby -e "puts (1..3).to_a.shuffle.join(' ')"`
+		export ARG=`ruby -e "puts (1..100).to_a.shuffle.join(' ')"`
 		if ./push_swap $ARG | ./checker $ARG | grep -q KO
 		then
 			echo $ARG

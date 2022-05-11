@@ -55,13 +55,7 @@ void	ft_rra(t_psnode **stack_a, int c)
 
 void	ft_rrb(t_psnode **stack_b, int c)
 {
-	int	node_len;
-
-	node_len = ft_node_len(*(stack_b));
-	if (node_len >= 2)
-	{
-		ft_reverse_rotate(stack_b);
-		if (c)
-			write(1, "rrb\n", 4);
-	}
+	ft_reverse_rotate(stack_b);
+	if (c)
+		write(1, "rrb\n", 4);
 }
